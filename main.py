@@ -1,8 +1,8 @@
 #importing librarys
-import pygame, sys
+import pygame, sys, random
 from pygame.locals import*
-from Asteroid import*
-from Ship import*
+from Asteroid import AsteroidClass
+from Ship import ShipClass
 #initializing/setup
 pygame.init()
 
@@ -18,13 +18,35 @@ screen.fill(color)
 #variables
 numlevel = 8
 Level = 1
-asteroidCount = 4
 player = ShipClass((20,200))
+asteroids = pygame.sprite.Group()
+asteroidCount = 2
+
+def win():
+  font = pygame.font.SysFont(none,70)
+  text = font.render("You Win!!!", True, (255,0,0))
+  text_rec = text.get_rect()
+  text_rec.center = (width/2, height/2)
+  while True:
+    screen.fill(color)
+    screen.blit
+
+
+def init():
+  global asteroidCount
+  global asteroids
+
+  player.reset ((20,200))
+  asteroids.empty()
+  asteroidCount += 3
+  for i in range(asteroidCount):
+    asteroids.add(AsteroidClass((random.randint(50, width - 50),random.randint(50, height - 50)), random.randint(15, 60)))
+    
 
 #defining main 
 def main():
-  global Level
-  global numlevel
+  global Level, numlevel
+  init()
   while Level <= numlevel:
     clock.tick(60) 
     #input
@@ -49,14 +71,19 @@ def main():
           player.speed[1] = 0
         if event.key == pygame.K_DOWN:
           player.speed[1] = 0
-        
-    
 
-
-    player.movement()     
     screen.fill(color)
+    player.movement() 
+    for asteroid in asteroids:
+      asteroid.movement()
+    asteroids.draw(screen)
     screen.blit(player.image,player.rect)
     pygame.display.flip()
-#mainloop
+
+    if player.checkReset(width):
+      init()
+
+      #mainloop
+  win()
 if __name__ == "__main__":
   main()
