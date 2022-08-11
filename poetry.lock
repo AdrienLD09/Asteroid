@@ -10,12 +10,60 @@ python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 docs = ["sphinx"]
 
 [[package]]
+name = "numpy"
+version = "1.23.1"
+description = "NumPy is the fundamental package for array computing with Python."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
+name = "pandas"
+version = "1.4.3"
+description = "Powerful data structures for data analysis, time series, and statistics"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+numpy = [
+    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
+    {version = ">=1.20.0", markers = "platform_machine == \"arm64\" and python_version < \"3.10\""},
+    {version = ">=1.19.2", markers = "platform_machine == \"aarch64\" and python_version < \"3.10\""},
+    {version = ">=1.18.5", markers = "platform_machine != \"aarch64\" and platform_machine != \"arm64\" and python_version < \"3.10\""},
+]
+python-dateutil = ">=2.8.1"
+pytz = ">=2020.1"
+
+[package.extras]
+test = ["pytest-xdist (>=1.31)", "pytest (>=6.0)", "hypothesis (>=5.5.3)"]
+
+[[package]]
 name = "pygame"
 version = "2.1.2"
 description = "Python Game Development"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[[package]]
+name = "python-dateutil"
+version = "2.8.2"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
+name = "pytz"
+version = "2022.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "ship"
@@ -31,6 +79,14 @@ sqlalchemy = "*"
 
 [package.extras]
 map = ["flask", "flask-script", "python-memcached"]
+
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "sqlalchemy"
@@ -95,12 +151,17 @@ test = ["zope.security", "zope.testrunner"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "f8585512a3a83f38d23d5e9b153d423ed59cd508b5da539fda8262f5d68372ca"
+content-hash = "72c98657d8e41917a4975a169079f065875a3f333c63d3e5977b08871b6c5957"
 
 [metadata.files]
 greenlet = []
+numpy = []
+pandas = []
 pygame = []
+python-dateutil = []
+pytz = []
 ship = []
+six = []
 sqlalchemy = []
 "zope.interface" = []
 "zope.proxy" = []

@@ -8,6 +8,7 @@ authors = ["AdrienLD09 <<>>"]
 python = "^3.8"
 pygame = "^2.1.2"
 ship = "^0.3"
+pandas = "^1.4.3"
 
 [tool.poetry.dev-dependencies]
 
